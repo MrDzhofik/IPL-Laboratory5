@@ -2,8 +2,8 @@
 class Calculate
   include Math
 
-  def initialize(x)
-    @x = x
+  def initialize(number)
+    @x = number
   end
 
   def calc
@@ -12,15 +12,14 @@ class Calculate
     @y = @ex / @tang + @x**2
   end
 
+  def get
+    @y
+  end
+
   def prt
     puts "x: #{@x}"
     puts "exponenta: #{@ex}"
     puts "tangent: #{@tang}"
-    puts "Finally: #{@y}"
+    puts "Finally: #{@y.round(2)}"
   end
 end
-
-x = gets.to_f
-a = Calculate.new(x)
-a.calc
-a.prt
