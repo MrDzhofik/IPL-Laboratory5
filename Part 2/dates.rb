@@ -1,9 +1,14 @@
-# Class
+# frozen_string_literal: true
+
+# Errors
+class DayError < StandardError; end
+class MonthError < StandardError; end
+
+# Dates
 class Dates
   def initialize(arr)
     @arr = arr
     @now = Time.now
-    @mins = [100, 100, 100]
     @now_days = @now.year * 365 + @now.month * 30 + @now.day
     @index = 0
     @maxi = 0
@@ -11,33 +16,31 @@ class Dates
 
   def find_nearest
     @arr.each.with_index do |x, index|
-      year, month, day = x.split('-').map { |num| num.to_i }
-      r_year = @now.year - year
-      r_month = @now.month - month
-      r_day = @now.day - day
-      if 0 <= r_year && r_year < @mins[0]
-        @mins[0] = r_year
-        @mins[1] = r_month.abs
-        @mins[2] = r_day.abs
-        @index = index
-
-      elsif (r_year == @mins[0]) && (0 <= r_month && r_month < @mins[1])
-        @mins[0] = r_year
-        @mins[1] = r_month
-        @mins[2] = r_day.abs
-        @index = index
-
-      elsif (r_year == @mins[0]) && (r_month == @mins[1]) && (0 <= r_day && r_day <= @mins[2])
-        @mins[0] = r_year
-        @mins[1] = r_month
-        @mins[2] = r_day
-        @index = index
+      year, month, day = x.split('-').map(&:to_i)
+      if check(month, day)
+        days = year * 365 + month * 30 + day
+        if (@now_days > days) && (days > @maxi)
+          @maxi = days
+          @index = index
+        end
       end
     end
-    p @arr
   end
 
   def get
     @arr[@index]
   end
+end
+
+def check(month, day)
+  raise DayError, 'Too much days' if day > 30 || day <= 0
+  raise MonthError, 'Too much months' if month > 12 || month <= 0
+
+  1
+rescue DayError
+  puts "\nDay should be between 1 and 30"
+  0
+rescue MonthError
+  puts "\nMonth should be between 1 and 12"
+  0
 end
