@@ -14,11 +14,7 @@ RSpec.describe Converter do
 
   it 'should return inintially value' do
     a = Converter.new(@words, @numbers)
-    p a.get
-    p @numbers
     a.convert
-    p a.get
-    p unconvert(a.get, @numbers)
     expect(@words).to eq(unconvert(a.get, @numbers))
   end
 end

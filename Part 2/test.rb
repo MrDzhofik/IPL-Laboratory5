@@ -22,7 +22,7 @@ RSpec.describe Dates do
   end
 
   it 'should return right values through future day' do
-    a = Dates.new(%w[2020-10-31 2021-12-12 2022-10-23])
+    a = Dates.new(%w[2020-10-29 2021-12-12 2022-10-23])
     a.find_nearest
     expect(a.get).to eq('2022-10-23')
   end

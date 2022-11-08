@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Calculator
 class Calculate
   include Math

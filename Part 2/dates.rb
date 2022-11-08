@@ -19,7 +19,7 @@ class Dates
       year, month, day = x.split('-').map(&:to_i)
       if check(month, day)
         days = year * 365 + month * 30 + day
-        if (@now_days > days) && (days > @maxi)
+        if (@now_days >= days) && (days > @maxi)
           @maxi = days
           @index = index
         end
