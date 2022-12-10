@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# class
+# class Converter
 class Converter
   def initialize(str, num)
     @string = str
@@ -9,11 +9,11 @@ class Converter
 
   def convert
     @string.each.with_index do |word, index|
-      word.each_char.with_index do |elem, j|
+      word.each_char.with_index do |elem, jor|
         code = elem.ord
-        modified = code + @numbers[index][j].to_i
+        modified = code + @numbers[index][jor].to_i
         modified_symbol = modified.chr('UTF-8')
-        word[j] = modified_symbol
+        word[jor] = modified_symbol
       end
     end
   end
@@ -24,7 +24,7 @@ class Converter
 end
 
 
-#functions
+# #functions
 def create_string
   a = ('a'..'q').to_a.shuffle.join
   a.slice(rand(2), rand(5..10))

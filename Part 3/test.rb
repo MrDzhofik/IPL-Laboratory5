@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require './converter'
+require_relative 'converter'
 
 RSpec.describe Converter do
   before(:example) do

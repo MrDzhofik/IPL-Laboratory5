@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require './dates'
+require_relative 'dates'
 
 RSpec.describe Dates do
   it 'should return right values' do
